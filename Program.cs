@@ -10,8 +10,3 @@ class Program
     }
 }
 
-class PrintBoard
-{
-
-}
-
