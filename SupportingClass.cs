@@ -32,23 +32,23 @@ namespace mission04
         public bool DeclareWinner(int[,] board)
         {
             for (int i = 0 ; i < 3; i++)
-                {
+            {
                 if (Math.Abs(board[i, 0] + board[i, 1] + board[i, 2]) == 3 ||
-                (Math.Abs(board[0, i] + board[1, i] + board[2, i]) == 3))
-                    {
-                    return true;
-                    }
-                }
-                
-                if (Math.Abs(board[0,0] + board[1,1] + board[2,2]) == 3 ||
-                    (Math.Abs(board[0,2] + board[1,1] + board[2,0]) == 3))
-                    {
-                    return true;
-                    }
-                else
+                    (Math.Abs(board[0, i] + board[1, i] + board[2, i]) == 3))
                 {
-                return false;
+                    return true;
                 }
+            }
+                
+            if (Math.Abs(board[0,0] + board[1,1] + board[2,2]) == 3 ||
+                (Math.Abs(board[0,2] + board[1,1] + board[2,0]) == 3))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
       
         }
            
