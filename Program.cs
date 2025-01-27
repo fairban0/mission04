@@ -63,8 +63,14 @@ class Program
         }
         else
         {
-            Console.WriteLine($"Player {currentPlayer} won the game! Game Over!");
-
+            if (currentPlayer == 1)
+            {
+                Console.WriteLine("Player 1 won the game! Player 2 loses. Game Over!");
+            }
+            else
+            {
+                Console.WriteLine("Player 2 won the game! Player 1 loses. Game Over!");
+            }
         }
        
     }
