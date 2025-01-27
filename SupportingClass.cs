@@ -18,37 +18,41 @@ namespace mission04
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    char symbol = board[row, col] == 1 ? 'X' : (board[row, col] == -1 ? 'O' : ' ');
+                    // Use a placeholder for empty cells (like a space, underscore, or number)
+                    string cell = board[row, col] == 1 ? "X" :
+                                  (board[row, col] == -1 ? "O" : " ");
+
+                    Console.Write($" {cell} "); // Add spacing for better readability
                     if (col < 2) Console.Write("|"); // Add column separator
                 }
 
                 Console.WriteLine();
-
                 if (row < 2) Console.WriteLine("---+---+---"); // Add row separator
             }
 
             Console.WriteLine();
         }
+
         public bool DeclareWinner(int[,] board)
         {
             for (int i = 0 ; i < 3; i++)
-                {
+            {
                 if (Math.Abs(board[i, 0] + board[i, 1] + board[i, 2]) == 3 ||
-                (Math.Abs(board[0, i] + board[1, i] + board[2, i]) == 3))
-                    {
-                    return true;
-                    }
-                }
-                
-                if (Math.Abs(board[0,0] + board[1,1] + board[2,2]) == 3 ||
-                    (Math.Abs(board[0,2] + board[1,1] + board[2,0]) == 3))
-                    {
-                    return true;
-                    }
-                else
+                    (Math.Abs(board[0, i] + board[1, i] + board[2, i]) == 3))
                 {
-                return false;
+                    return true;
                 }
+            }
+                
+            if (Math.Abs(board[0,0] + board[1,1] + board[2,2]) == 3 ||
+                (Math.Abs(board[0,2] + board[1,1] + board[2,0]) == 3))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
       
         }
            
