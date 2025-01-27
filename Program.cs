@@ -44,6 +44,7 @@ class Program
             } while (!ValidMove(row, col, board)); //checking for Bad Input
 
             board[row, col] = userInput == 'X' ? 1 : -1;
+
             sc.PrintBoard(board);
             
             gameOver = sc.DeclareWinner(board);
@@ -87,7 +88,8 @@ class Program
     //creating a method to make sure they have valid input
     public static bool ValidMove(int row, int col, int [,] board)
     {
-        if ( row < 0 || row > 2 ||  col < 0 || col > 2)
+        if (row < 0 || row > 2 || col < 0 || col > 2)
+
         {
             Console.WriteLine("Invalid Move, please put it within the ranges of (0-2)");
             return false;
