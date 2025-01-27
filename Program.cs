@@ -20,8 +20,6 @@ class Program
 
         char userInput = 'X'; 
         
-        
-        
         //welcome user to game 
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
         while(!gameOver && turns < 9)
@@ -38,17 +36,18 @@ class Program
             do
             {
                 Console.WriteLine($"Please input which row you would like to put {userInput} on the board (0-2)");
-                row = int.Parse(Console.ReadLine());
+                row = GetValidIntegerInput();
                     
                 Console.WriteLine($"Please input which column you would like to put {userInput} on the board (0-2)");
-                col = int.Parse(Console.ReadLine());
-                
+                col = GetValidIntegerInput();
+
             } while (!ValidMove(row, col, board)); //checking for Bad Input
 
             board[row, col] = userInput == 'X' ? 1 : -1;
 
-
-
+            sc.PrintBoard(board);
+            
+            gameOver = sc.DeclareWinner(board);
             //switch players 
             if (!gameOver)
             {
@@ -56,15 +55,41 @@ class Program
                 userInput = userInput == 'X' ? 'O': 'X';
             }
             turns++;
-        }  
-        
+        }
+
+        //if tied
+        if (gameOver == false)
+        {
+            Console.WriteLine("It's a tie. Game Over!");
+        }
+        else
+        {
+            Console.WriteLine($"Player {currentPlayer} won the game! Game Over!");
+
+        }
+       
     }
     
-    
+    // Get a valid integer input from the user
+    public static int GetValidIntegerInput()
+    {
+        while (true)
+        {
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int result))
+            {
+                return result;
+            }
+
+            Console.WriteLine("Invalid input! Please enter a number between 0 and 2.");
+        }
+    }
+
     //creating a method to make sure they have valid input
     public static bool ValidMove(int row, int col, int [,] board)
     {
         if (row < 0 || row > 2 || col < 0 || col > 2)
+
         {
             Console.WriteLine("Invalid Move, please put it within the ranges of (0-2)");
             return false;
